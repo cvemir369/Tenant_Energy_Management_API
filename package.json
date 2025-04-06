@@ -1,0 +1,24 @@
+{
+  "name": "deepseek_tenant_energy_management_api",
+  "version": "1.0.0",
+  "description": "Based on the job description, here's a realistic practice challenge that reflects their tech stack and requirements:",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cvemir369/Tenant_Energy_Management_API.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/cvemir369/Tenant_Energy_Management_API/issues"
+  },
+  "homepage": "https://github.com/cvemir369/Tenant_Energy_Management_API#readme",
+  "dependencies": {
+    "dotenv": "^16.4.7"
+  }
+}
