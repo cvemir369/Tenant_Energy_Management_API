@@ -21,7 +21,7 @@ async function bootstrap() {
     username: process.env.USERNAME,
     password: process.env.PASSWORD,
     database: process.env.DATABASE,
-    entities: [__dirname + "/**/*.entity{.ts,.js}"],
+    entities: [__dirname + "/entities/*.ts"],
     synchronize: true,
     logging: false,
     extra: {
