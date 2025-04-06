@@ -4,7 +4,10 @@
   "description": "Based on the job description, here's a realistic practice challenge that reflects their tech stack and requirements:",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon --exec ts-node src/server.ts",
+    "build": "tsc",
+    "start": "node dist/server.js"
   },
   "repository": {
     "type": "git",
@@ -19,6 +22,18 @@
   },
   "homepage": "https://github.com/cvemir369/Tenant_Energy_Management_API#readme",
   "dependencies": {
-    "dotenv": "^16.4.7"
+    "@types/node": "^22.14.0",
+    "apollo-server-express": "^3.13.0",
+    "dotenv": "^16.4.7",
+    "express": "^4.17.1",
+    "graphql": "^16.10.0",
+    "graphql-scalars": "^1.24.2",
+    "nodemon": "^3.1.9",
+    "pg": "^8.14.1",
+    "reflect-metadata": "^0.2.2",
+    "ts-node": "^10.9.2",
+    "type-graphql": "^2.0.0-rc.2",
+    "typeorm": "^0.3.22",
+    "typescript": "^5.8.3"
   }
 }

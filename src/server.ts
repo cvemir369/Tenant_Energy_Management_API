@@ -1,31 +1,27 @@
 // added after starter code + dotenv
 import dotenv from "dotenv";
 
-//starter code
 // server.ts
+import "reflect-metadata";
 import express from "express";
 import { ApolloServer } from "apollo-server-express";
 import { buildSchema } from "type-graphql";
 import { createConnection } from "typeorm";
-import { TenantResolver } from "./resolvers/TenantResolver";
+import { TenantResolver } from "./resolvers/TentantResolver";
 
 // ENVIRONMENT VARIABLES
 dotenv.config();
-const { TYPE, HOST, PORT, USERNAME, PASSWORD, DATABASE } = process.env;
-if (!TYPE || !HOST || !PORT || !USERNAME || !PASSWORD || !DATABASE) {
-  throw new Error("Missing environment variables for database connection.");
-}
 
 async function bootstrap() {
   // Create database connection
   await createConnection({
-    type: TYPE,
-    host: HOST,
-    port: parseInt(PORT),
-    username: USERNAME,
-    password: PASSWORD,
-    database: DATABASE,
-    entities: [__dirname + "/entity/*.ts"],
+    type: process.env.TYPE as "postgres",
+    host: process.env.HOST,
+    port: parseInt(process.env.PORT || "5432"),
+    username: process.env.USERNAME,
+    password: process.env.PASSWORD,
+    database: process.env.DATABASE,
+    entities: [__dirname + "/**/*.entity{.ts,.js}"],
     synchronize: true,
     logging: false,
     extra: {
@@ -38,7 +34,10 @@ async function bootstrap() {
     resolvers: [TenantResolver],
   });
 
-  const server = new ApolloServer({ schema });
+  const server = new ApolloServer({
+    schema,
+    context: ({ req, res }) => ({ req, res }),
+  });
 
   const app = express();
   server.applyMiddleware({ app });
@@ -48,4 +47,6 @@ async function bootstrap() {
   });
 }
 
-bootstrap();
+bootstrap().catch((err) => {
+  console.error(err);
+});
