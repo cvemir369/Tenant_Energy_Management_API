@@ -1,5 +1,5 @@
 // added after starter code + dotenv
-import dotenv from "dotenv";
+import * as dotenv from "dotenv";
 
 // server.ts
 import "reflect-metadata";
@@ -18,7 +18,7 @@ async function bootstrap() {
     type: process.env.TYPE as "postgres",
     host: process.env.HOST,
     port: parseInt(process.env.PORT || "5432"),
-    username: process.env.USERNAME,
+    username: "postgres",
     password: process.env.PASSWORD,
     database: process.env.DATABASE,
     entities: [__dirname + "/entities/*.ts"],
@@ -38,6 +38,9 @@ async function bootstrap() {
     schema,
     context: ({ req, res }) => ({ req, res }),
   });
+
+  // Start the Apollo Server
+  await server.start();
 
   const app = express();
   server.applyMiddleware({ app });
